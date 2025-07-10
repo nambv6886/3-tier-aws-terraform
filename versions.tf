@@ -9,10 +9,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = var.backend_s3_bucket
-    key            = var.backend_s3_key
-    region         = var.backend_s3_region
-    dynamodb_table = var.backend_dynamodb_table
+    bucket       = "nambv-terraform"
+    key          = "terraform/state"
+    region       = "ap-southeast-1"
+    use_lockfile = true
   }
 }
 

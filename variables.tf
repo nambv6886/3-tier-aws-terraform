@@ -8,22 +8,27 @@ variable "aws_region" {
   type        = string
 }
 
-variable "backend_s3_bucket" {
-  description = "The S3 bucket for storing Terraform state"
+variable "environment" {
+  description = "The environment for the deployment (e.g., dev, staging, prod)"
   type        = string
 }
 
-variable "backend_s3_key" {
-  description = "The S3 key for the Terraform state file"
+variable "vpc_cidr_block" {
   type        = string
+  description = "The CIDR block for the VPC"
 }
 
-variable "backend_s3_region" {
-  description = "The AWS region for the S3 backend"
-  type        = string
+variable "private_subnets" {
+  type        = list(string)
+  description = "List of CIDR blocks for private subnets"
 }
 
-variable "backend_dynamodb_table" {
-  description = "The DynamoDB table for state locking"
-  type        = string
+variable "public_subnets" {
+  type        = list(string)
+  description = "List of CIDR blocks for public subnets"
+}
+
+variable "database_subnets" {
+  type        = list(string)
+  description = "List of CIDR blocks for database subnets"
 }
