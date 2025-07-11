@@ -157,3 +157,42 @@ resource "aws_autoscaling_policy" "alb_target_requests_scale_up" {
 
   autoscaling_group_name = aws_autoscaling_group.web.name
 }
+
+# # ACM Module - To create and Verify SSL Certificates
+# module "acm" {
+#   source = "terraform-aws-modules/acm/aws"
+#   #version = "2.14.0"
+#   #version = "3.0.0"
+#   version = "5.0.0"
+
+#   domain_name = trimsuffix(data.aws_route53_zone.mydomain.name, ".")
+#   zone_id     = data.aws_route53_zone.mydomain.zone_id
+
+#   subject_alternative_names = [
+#     ".com"
+#   ]
+#   # Validation Method
+#   validation_method   = "DNS"
+#   wait_for_validation = true
+# }
+
+# # Output ACM Certificate ARN
+# output "this_acm_certificate_arn" {
+#   description = "The ARN of the certificate"
+#   #value       = module.acm.this_acm_certificate_arn
+#   value = module.acm.acm_certificate_arn
+# }
+
+# # DNS Registration 
+# resource "aws_route53_record" "apps_dns" {
+#   zone_id = data.aws_route53_zone.mydomain.zone_id
+#   name    = "name"
+#   type    = "A"
+#   alias {
+#     #name                   = module.alb.lb_dns_name
+#     #zone_id                = module.alb.lb_zone_id
+#     name                   = module.alb.dns_name
+#     zone_id                = module.alb.zone_id
+#     evaluate_target_health = true
+#   }
+# }
