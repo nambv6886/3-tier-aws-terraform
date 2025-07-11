@@ -82,6 +82,13 @@ module "alb" {
   }
 }
 
+// todo
+module "iam_instance_profile" {
+  source  = "terraform-in-action/iip/aws"
+  actions = ["logs:*", "rds:*"]
+}
+
+
 resource "aws_launch_template" "web" {
   name_prefix            = "web-"
   image_id               = data.aws_ami.ami.id
@@ -89,10 +96,10 @@ resource "aws_launch_template" "web" {
   vpc_security_group_ids = [var.sg.web_sg]
   key_name               = var.ec2_instance_key_name
   user_data              = filebase64("${path.module}/user-data.sh")
-  // todo
-  # iam_instance_profile {
-  #   name = "${var.project_name}-web-instance-profile"
-  # }
+
+  iam_instance_profile {
+    name = module.iam_instance_profile.name
+  }
 
   block_device_mappings {
     device_name = "/dev/sda1"

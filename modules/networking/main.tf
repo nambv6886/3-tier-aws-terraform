@@ -97,6 +97,34 @@ module "web_sg" {
       source_security_group_id = module.alb_sg.security_group_id
     }
   ]
+  egress_rules = ["all-all"]
+
+  # egress_with_cidr_blocks = [
+  #   {
+  #     from_port   = 80
+  #     to_port     = 80
+  #     protocol    = "tcp"
+  #     description = "HTTP to internet"
+  #     cidr_blocks = "0.0.0.0/0"
+  #   },
+  #   {
+  #     from_port   = 443
+  #     to_port     = 443
+  #     protocol    = "tcp"
+  #     description = "HTTPS to internet"
+  #     cidr_blocks = "0.0.0.0/0"
+  #   }
+  # ]
+
+  # egress_with_source_security_group_id = [
+  #   {
+  #     from_port                = 5432
+  #     to_port                  = 5432
+  #     protocol                 = "tcp"
+  #     description              = "PostgreSQL to database"
+  #     source_security_group_id = module.db_sg.security_group_id
+  #   }
+  # ]
 
   tags = {
     Name        = "${var.project_name}-web-sg"
