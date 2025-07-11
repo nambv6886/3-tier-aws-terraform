@@ -1,6 +1,7 @@
 data "aws_availability_zones" "available" {}
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "6.0.1"
 
   name = "${var.project_name}-vpc"
   cidr = var.vpc_cidr_block
@@ -13,6 +14,9 @@ module "vpc" {
   enable_nat_gateway           = true
   single_nat_gateway           = true
   create_database_subnet_group = true
+
+  enable_dns_hostnames = true
+  enable_dns_support   = true
 
   tags = {
     Name        = "${var.project_name}-vpc"

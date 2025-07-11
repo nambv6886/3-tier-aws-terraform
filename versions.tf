@@ -10,7 +10,7 @@ terraform {
 
   backend "s3" {
     bucket       = "nambv-terraform"
-    key          = "terraform/state"
+    key          = "dev/terraform/state"
     region       = "ap-southeast-1"
     use_lockfile = true
   }
