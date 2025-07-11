@@ -6,6 +6,15 @@ data "aws_ami" "ami" {
     values = ["amzn2-ami-hvm-*-x86_64-gp2"]
   }
 
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+
   owners = ["amazon"]
 }
 
@@ -101,14 +110,6 @@ resource "aws_launch_template" "web" {
     name = module.iam_instance_profile.name
   }
 
-  block_device_mappings {
-    device_name = "/dev/sda1"
-    ebs {
-      volume_size           = 10
-      volume_type           = "gp2"
-      delete_on_termination = true
-    }
-  }
 }
 
 resource "aws_autoscaling_group" "web" {
