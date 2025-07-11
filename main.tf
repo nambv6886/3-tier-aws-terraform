@@ -2,6 +2,8 @@ module "networking" {
   source = "./modules/networking"
 
   project_name     = var.project_name
+  aws_region       = var.aws_region
+  azs              = var.azs
   environment      = var.environment
   vpc_cidr_block   = var.vpc_cidr_block
   private_subnets  = var.private_subnets

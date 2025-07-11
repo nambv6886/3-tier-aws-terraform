@@ -8,6 +8,13 @@ variable "aws_region" {
   type        = string
 }
 
+variable "azs" {
+  description = "List of availability zones to use for the VPC"
+  type        = list(string)
+  default     = ["ap-southeast-1a", "ap-southeast-1b"]
+}
+
+
 variable "environment" {
   description = "The environment for the deployment (e.g., dev, staging, prod)"
   type        = string

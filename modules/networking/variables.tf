@@ -27,3 +27,15 @@ variable "database_subnets" {
   type        = list(string)
   description = "List of CIDR blocks for database subnets"
 }
+
+variable "aws_region" {
+  description = "The AWS region where the resources will be deployed"
+  type        = string
+  default     = "ap-southeast-1"
+}
+
+variable "azs" {
+  description = "List of availability zones to use for the VPC"
+  type        = list(string)
+  default     = ["ap-southeast-1a", "ap-southeast-1b"]
+}
