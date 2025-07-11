@@ -10,5 +10,8 @@ module "networking" {
 }
 
 module "database" {
-  source = "./modules/database"
+  source       = "./modules/database"
+  project_name = var.project_name
+  vpc          = module.networking.vpc
+  sg           = module.networking.sg
 }
