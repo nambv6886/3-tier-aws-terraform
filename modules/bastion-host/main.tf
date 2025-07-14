@@ -42,3 +42,14 @@ module "bastion_host" {
     Project = var.project_name
   }
 }
+
+resource "aws_eip" "bastion_host_eip" {
+  depends_on = [module.bastion_host, var.vpc]
+  instance   = module.bastion_host.id
+
+  tags = {
+    Name    = "${var.project_name}-bastion-host-eip"
+    Project = var.project_name
+  }
+
+}

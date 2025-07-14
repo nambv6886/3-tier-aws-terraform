@@ -71,8 +71,8 @@ module "db_sg" {
       source_security_group_id = module.web_sg.security_group_id
     },
     {
-      from_port                = 22
-      to_port                  = 22
+      from_port                = 5432
+      to_port                  = 5432
       protocol                 = "tcp"
       description              = "Postgres from bastion host"
       source_security_group_id = module.bastion_host_sg.security_group_id

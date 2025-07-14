@@ -1,4 +1,4 @@
-output "bastion_host_public_ip" {
-  description = "Public IP of the bastion host"
-  value       = aws_instance.bastion_host.public_ip
+output "bastion_host_public_eip" {
+  description = "value of the EC2 public instance EIP"
+  value       = aws_eip.bastion_host_eip.public_ip
 }
