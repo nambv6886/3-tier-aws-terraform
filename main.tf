@@ -11,6 +11,16 @@ module "networking" {
   database_subnets = var.database_subnets
 }
 
+module "bastion" {
+  source = "./modules/bastion-host"
+
+  project_name                   = var.project_name
+  bastion_host_instance_type     = var.bastion_host_instance_type
+  bastion_host_instance_key_name = var.bastion_host_instance_key_name
+  vpc                            = module.networking.vpc
+  sg                             = module.networking.sg
+}
+
 module "database" {
   source            = "./modules/database"
   project_name      = var.project_name

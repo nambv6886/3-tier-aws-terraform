@@ -92,3 +92,14 @@ variable "db_username" {
   type        = string
   default     = "dbadmin"
 }
+
+variable "bastion_host_instance_type" {
+  description = "Instance type for the bastion host"
+  type        = string
+  default     = "t2.micro"
+}
+
+variable "bastion_host_instance_key_name" {
+  description = "SSH key pair name for accessing the bastion host"
+  type        = string
+}

@@ -1,4 +1,4 @@
-data "aws_ami" "ami" {
+data "aws_ami" "amzlinux2" {
   most_recent = true
 
   filter {
@@ -13,6 +13,11 @@ data "aws_ami" "ami" {
   filter {
     name   = "architecture"
     values = ["x86_64"]
+  }
+
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
   }
 
   owners = ["amazon"]
@@ -96,10 +101,9 @@ module "iam_instance_profile" {
   actions = ["logs:*", "rds:*"]
 }
 
-
 resource "aws_launch_template" "web" {
   name_prefix            = "web-"
-  image_id               = data.aws_ami.ami.id
+  image_id               = data.aws_ami.amzlinux2.id
   instance_type          = var.ec2_instance_type
   vpc_security_group_ids = [var.sg.web_sg]
   key_name               = var.ec2_instance_key_name
