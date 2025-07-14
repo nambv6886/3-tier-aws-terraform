@@ -14,6 +14,42 @@ This project deploys a scalable 3-tier web application architecture on AWS using
 
 _3-Tier AWS Architecture with Terraform_
 
+## 🧪 Test Guide
+
+A simple guide to manually verify your 3-tier architecture is working correctly.
+
+### Presentation Tier (ALB)
+
+1. ** Access ALBt**
+
+- Test ALB endpoint: curl -I http://YOUR_ALB_DNS_NAME
+- Test with verbose output: curl -v http://YOUR_ALB_DNS_NAME
+- Test health check: curl http://YOUR_ALB_DNS_NAME/
+
+### Test Auto Scaling Group
+
+1. **Instance Verification**
+
+- Login to AWS Console
+- Navigate to EC2 dashboard
+- Verify instances are running in the correct subnets
+- Check that instances have passed health checks
+
+2. **Simple Load Test**
+
+- Check ASG status: aws autoscaling describe-auto-scaling-groups --auto-scaling-group-names "YOUR_PROJECT_NAME-web-asg"
+
+- brew install apache2
+- ab -n 1000 -c 10 http://YOUR_ALB_DNS_NAME/
+
+### Test Security Groups
+
+1. **Connection Check**
+
+- curl -I http://YOUR_ALB_DNS_NAME (should work)
+- curl -I http://EC2_PRIVATE_IP --connect-timeout 5 (should fail)
+- ssh -i your-key.pem ec2-user@EIP (should work)
+
 ## 🛠️ Components
 
 ### 1. **Networking Module**

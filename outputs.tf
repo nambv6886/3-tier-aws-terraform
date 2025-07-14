@@ -6,3 +6,7 @@ output "db_password" {
 output "lb_dns" {
   value = module.autoscaling.lb_dns
 }
+
+output "bastion_host_public_eip" {
+  value = module.bastion.bastion_host_public_eip
+}
