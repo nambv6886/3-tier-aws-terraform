@@ -43,6 +43,7 @@ module "alb_sg" {
       cidr_blocks = "0.0.0.0/0"
     }
   ]
+  egress_rules = ["all-all"]
 
   tags = {
     Name        = "${var.project_name}-alb-sg"

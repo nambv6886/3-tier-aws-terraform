@@ -86,7 +86,6 @@ module "alb" {
         protocol            = "HTTP"
         matcher             = "200-399"
       }
-
     }
   }
 }
