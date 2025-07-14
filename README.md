@@ -20,7 +20,7 @@ A simple guide to manually verify your 3-tier architecture is working correctly.
 
 ### Presentation Tier (ALB)
 
-1. ** Access ALBt**
+1. ** Access ALB**
 
 - Test ALB endpoint: curl -I http://YOUR_ALB_DNS_NAME
 - Test with verbose output: curl -v http://YOUR_ALB_DNS_NAME
